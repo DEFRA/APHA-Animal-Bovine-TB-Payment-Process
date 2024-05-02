@@ -1,0 +1,3 @@
+﻿WorkPackage,WorkPackageVersion,User,TransactionID,StartDate,EndDate,TotalTime,Outcome,OutcomeNotes,MiscNotes,ExitPoint
+138,1,m1006120,WSA-3036187,05/02/2024 08:19:16,05/02/2024 08:20:36,79.34,Success,,,-1
+138,1,m1006120,WSA-3036187,05/02/2024 09:36:59,05/02/2024 09:37:23,23.74,Success,,,-1
