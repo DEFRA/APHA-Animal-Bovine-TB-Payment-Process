@@ -12,6 +12,7 @@
       "Path": "Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "listTaskIDs&StateMachine_1",
         "SystemException&StateMachine_1",
         "BusinessException&StateMachine_1",
         "TransactionNumber&StateMachine_1",
@@ -65,8 +66,9 @@
       "Path": "Framework/InitAllApplications.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "collProcesses&Sequence_9",
-        "boolOutlookOpen&Sequence_15"
+        "browsSAM&TryCatch_1",
+        "boolOutlookOpen&Sequence_10",
+        "collProcesses&Sequence_9"
       ],
       "ArgumentsSectionElementsOrder": [
         "io_Config"
@@ -78,10 +80,7 @@
       "Path": "Framework/GetTransactionData.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "listMailMessages&Sequence_1",
-        "credNetworkCredentials&Sequence_1",
-        "mailInProgressMessage&Sequence_1",
-        "mailCurrentMessage&Sequence_1"
+        "TransactionData&Sequence_4"
       ],
       "ArgumentsSectionElementsOrder": [
         "in_TransactionNumber",
@@ -91,6 +90,86 @@
         "in_strProcessType",
         "in_boolContinue"
       ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process/Process Transaction.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "browsSAM&Flowchart_1",
+        "BusinessException&Flowchart_1",
+        "SystemException&Flowchart_1",
+        "listResultText&Flowchart_1",
+        "strTaskID&Sequence_7",
+        "boolPopup&Sequence_7",
+        "strTotalNoAnimals&Sequence_8",
+        "strID&Sequence_17",
+        "strInnerText&Sequence_11"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_TransactionItem",
+        "io_arrExitPoint",
+        "io_swProcessingTimer",
+        "io_Config",
+        "io_arrCaseID",
+        "io_TaskIDs"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process/Process Subflows/Populate Animal IDs.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "dtSAMAnimalIDs&Sequence_1",
+        "dtTemplateAnimalIDs&Sequence_1",
+        "intRowIndex&Sequence_2",
+        "strSelectorRowIndex&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "io_swProcessingTimer",
+        "in_browsSAM",
+        "in_TransactionItem",
+        "io_Config"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process/Process Subflows/Populate_CPH_Haulage.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "dtCHPRowCount&Sequence_16",
+        "booErrorMessage&Sequence_13",
+        "strSelectorRowIndex&Sequence_7",
+        "dtTemplateCPH&Sequence_1",
+        "intRowIndex&Sequence_7",
+        "dtSAMCPH&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "io_swProcessingTimer",
+        "io_Config",
+        "in_browsSAM"
+      ],
+      "ConstantsSectionElementsOrder": null,
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Sandbox.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Credentials&Sequence_1",
+        "io_Config&Sequence_1",
+        "in_browsSAM&Sequence_2",
+        "dtSAMCPH&Sequence_2",
+        "dtTemplateCPH&Sequence_2",
+        "intRowIndex&Sequence_3",
+        "strSelectorRowIndex&Sequence_3",
+        "dtCHPRowCount&Sequence_4",
+        "booErrorMessage&Sequence_5"
+      ],
+      "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": null,
       "AddedNamespaces": null
     }
