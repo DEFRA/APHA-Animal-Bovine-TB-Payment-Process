@@ -11,7 +11,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1045,1090.5</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1209,1090.5</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Process_Transaction_2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="31">
@@ -49,7 +49,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="31">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -81,7 +81,6 @@
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
       <AssemblyReference>System.Configuration.Install</AssemblyReference>
       <AssemblyReference>System.Data.Entity</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Flowchart sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="642,1025.5" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -279,7 +278,7 @@
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                     </ActivityAction.Argument>
-                    <Sequence DisplayName="Open WSA &amp; Populate Details" sap:VirtualizedContainerService.HintSize="526,3474" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <Sequence DisplayName="Open WSA &amp; Populate Details" sap:VirtualizedContainerService.HintSize="526,4253" sap2010:WorkflowViewState.IdRef="Sequence_8">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:String" Name="strTotalNoAnimals" />
                       </Sequence.Variables>
@@ -314,28 +313,53 @@
                         </ui:GetAttribute>
                         <AddToCollection x:TypeArguments="x:String" Collection="[io_TaskIDs]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[strID]" />
                       </Sequence>
-                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click &quot;Assigned To&quot;" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
-                        <ui:Click.CursorPosition>
-                          <ui:CursorPosition Position="Center">
-                            <ui:CursorPosition.OffsetX>
-                              <InArgument x:TypeArguments="x:Int32" />
-                            </ui:CursorPosition.OffsetX>
-                            <ui:CursorPosition.OffsetY>
-                              <InArgument x:TypeArguments="x:Int32" />
-                            </ui:CursorPosition.OffsetY>
-                          </ui:CursorPosition>
-                        </ui:Click.CursorPosition>
-                        <ui:Click.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="265a9684-1635-463b-8add-cf9b0b6d506e" InformativeScreenshot="d0e40e972f766e111d8ed1718a58967f" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl aaname='*Assigned To:*Perform Activity*' tag='A' /&gt;">
-                            <ui:Target.TimeoutMS>
-                              <InArgument x:TypeArguments="x:Int32" />
-                            </ui:Target.TimeoutMS>
-                            <ui:Target.WaitForReady>
-                              <InArgument x:TypeArguments="ui:WaitForReady" />
-                            </ui:Target.WaitForReady>
-                          </ui:Target>
-                        </ui:Click.Target>
-                      </ui:Click>
+                      <ui:RetryScope DisplayName="Retry Clicking Assigned To" sap:VirtualizedContainerService.HintSize="484,520" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="3" RetryInterval="00:00:05">
+                        <ui:RetryScope.ActivityBody>
+                          <ActivityAction>
+                            <Sequence DisplayName="Click Assigned to &amp; Check Loaded" sap:VirtualizedContainerService.HintSize="376,344" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click &quot;Assigned To&quot;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True">
+                                <ui:Click.CursorPosition>
+                                  <ui:CursorPosition Position="Center">
+                                    <ui:CursorPosition.OffsetX>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:CursorPosition.OffsetX>
+                                    <ui:CursorPosition.OffsetY>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:CursorPosition.OffsetY>
+                                  </ui:CursorPosition>
+                                </ui:Click.CursorPosition>
+                                <ui:Click.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="265a9684-1635-463b-8add-cf9b0b6d506e" InformativeScreenshot="d0e40e972f766e111d8ed1718a58967f" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl aaname='*Assigned To:*Perform Activity*' tag='A' /&gt;">
+                                    <ui:Target.TimeoutMS>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:Target.TimeoutMS>
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:Click.Target>
+                              </ui:Click>
+                              <ui:WaitUiElementAppear FoundElement="{x:Null}" WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Check WSA Loaded" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1">
+                                <ui:WaitUiElementAppear.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="19014276-ce29-4339-9d09-22d9f6ccdc88" InformativeScreenshot="54b2c7b88540d205a96d3eda1f18d950" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl aaname='Activity Purpose' parentid='RULE_KEY' tag='DIV' /&gt;" TimeoutMS="10000">
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:WaitUiElementAppear.Target>
+                              </ui:WaitUiElementAppear>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:RetryScope.ActivityBody>
+                        <ui:RetryScope.Condition>
+                          <ActivityFunc x:TypeArguments="x:Boolean" />
+                        </ui:RetryScope.Condition>
+                      </ui:RetryScope>
                       <Sequence sap2010:Annotation.AnnotationText="There is no reliable selector for only the Total No. of Animals in SAM so we have to retrieve the entire data row and then Regex out the number." DisplayName="Get Total No. of Animals" sap:VirtualizedContainerService.HintSize="484,386" sap2010:WorkflowViewState.IdRef="Sequence_11">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="strInnerText" />
@@ -370,7 +394,7 @@
                           </Assign.Value>
                         </Assign>
                       </Sequence>
-                      <If Condition="[CType(strTotalNoAnimals, Double) = CType(io_TransactionItem.Rows(0)(&quot;Number of animals&quot;).ToString, Double)]" DisplayName="Number of Animals Mismatched?" sap:VirtualizedContainerService.HintSize="484,220" sap2010:WorkflowViewState.IdRef="If_4">
+                      <If Condition="[CType(strTotalNoAnimals, Double) = CType(io_TransactionItem.Rows(0)(&quot;Number of animals&quot;).ToString, Double)]" DisplayName="Number of Animals Mismatched?" sap:VirtualizedContainerService.HintSize="484,219" sap2010:WorkflowViewState.IdRef="If_4">
                         <If.Else>
                           <Throw Exception="[New BusinessRuleException(&quot;Number of Animals mismatch between template and SAM!&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_5" />
                         </If.Else>
@@ -409,7 +433,7 @@
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                               </ActivityAction.Argument>
-                              <If Condition="[exception.Message.Contains(&quot;Cannot select item. It was not found among existing items.&quot;)]" sap:VirtualizedContainerService.HintSize="484,220" sap2010:WorkflowViewState.IdRef="If_5">
+                              <If Condition="[exception.Message.Contains(&quot;Cannot select item. It was not found among existing items.&quot;)]" sap:VirtualizedContainerService.HintSize="484,219" sap2010:WorkflowViewState.IdRef="If_5">
                                 <If.Then>
                                   <Throw Exception="[New SystemException(&quot;Input Payment Method not found in drop down list: &quot;+io_TransactionItem.Rows(0)(&quot;Payment Method CHEQUE or BACS&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_2" />
                                 </If.Then>
@@ -421,7 +445,7 @@
                           </Catch>
                         </TryCatch.Catches>
                       </TryCatch>
-                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Enter BACS / Cheque No." sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;BACS/Cheque No.&quot;).ToString]">
+                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Enter BACS / Cheque No." EmptyField="True" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;BACS/Cheque No.&quot;).ToString]">
                         <ui:TypeInto.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="dbed52ee-acd7-4bd7-9801-612701726dc4" InformativeScreenshot="fc85c2bcdccf70d5dc21a866cfbb5224" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' aaname='BACS / Cheque No.' parentname='BASE_REF' type='text' /&gt;">
                             <ui:Target.TimeoutMS>
@@ -433,7 +457,7 @@
                           </ui:Target>
                         </ui:TypeInto.Target>
                       </ui:TypeInto>
-                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Enter Date Payment Received" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Date payment received&quot;).ToString]">
+                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Enter Date Payment Received" EmptyField="True" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Date payment received&quot;).ToString]">
                         <ui:TypeInto.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="dbed52ee-acd7-4bd7-9801-612701726dc4" InformativeScreenshot="a5bb354bb807383b8794a87978bd3b27" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' aaname='Date Payment Received' parentname='BASE_REF' type='text' /&gt;">
                             <ui:Target.TimeoutMS>
@@ -445,7 +469,7 @@
                           </ui:Target>
                         </ui:TypeInto.Target>
                       </ui:TypeInto>
-                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Enter Disposal Invoice Number" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Disposal Invoice number&quot;).ToString]">
+                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Enter Disposal Invoice Number" EmptyField="True" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Disposal Invoice number&quot;).ToString]">
                         <ui:TypeInto.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="dbed52ee-acd7-4bd7-9801-612701726dc4" InformativeScreenshot="d0e69556861b9dd9d40c094a3b2719c6" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' aaname='Disposal Invoice Number' parentname='BASE_REF' type='text' /&gt;">
                             <ui:Target.TimeoutMS>
@@ -457,7 +481,7 @@
                           </ui:Target>
                         </ui:TypeInto.Target>
                       </ui:TypeInto>
-                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Enter Disposal Invoice Received" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_4" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Disposal Invoice number&quot;).ToString]">
+                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Enter Disposal Invoice Received" EmptyField="True" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_4" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Disposal Invoice number&quot;).ToString]">
                         <ui:TypeInto.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="dbed52ee-acd7-4bd7-9801-612701726dc4" InformativeScreenshot="d0e69556861b9dd9d40c094a3b2719c6" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' aaname='Disposal Invoice Number' parentname='BASE_REF' type='text' /&gt;">
                             <ui:Target.TimeoutMS>
@@ -469,7 +493,7 @@
                           </ui:Target>
                         </ui:TypeInto.Target>
                       </ui:TypeInto>
-                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Enter Date Invoice Received" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_5" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Date invoice received&quot;).ToString]">
+                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Enter Date Invoice Received" EmptyField="True" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_5" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Date invoice received&quot;).ToString]">
                         <ui:TypeInto.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="dbed52ee-acd7-4bd7-9801-612701726dc4" InformativeScreenshot="0b179577c8e1bcdfab3a2c2e1e1d7d59" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' aaname='Date Invoice Received' parentname='BASE_REF' type='text' /&gt;">
                             <ui:Target.TimeoutMS>
@@ -481,7 +505,7 @@
                           </ui:Target>
                         </ui:TypeInto.Target>
                       </ui:TypeInto>
-                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Enter Slaughter Cost Per Animal" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_6" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Slaughter cost per animal&quot;).ToString]">
+                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Enter Slaughter Cost Per Animal" EmptyField="True" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="TypeInto_6" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Slaughter cost per animal&quot;).ToString]">
                         <ui:TypeInto.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="dbed52ee-acd7-4bd7-9801-612701726dc4" InformativeScreenshot="f3199567e633e39a43cb6127fcb1425c" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' aaname='Slaughter Cost per animal' parentname='BASE_REF' type='number' /&gt;">
                             <ui:Target.TimeoutMS>
@@ -529,7 +553,7 @@
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                               </ActivityAction.Argument>
-                              <If Condition="[exception.Message.Contains(&quot;Cannot select item. It was not found among existing items.&quot;)]" sap:VirtualizedContainerService.HintSize="484,220" sap2010:WorkflowViewState.IdRef="If_6">
+                              <If Condition="[exception.Message.Contains(&quot;Cannot select item. It was not found among existing items.&quot;)]" sap:VirtualizedContainerService.HintSize="484,219" sap2010:WorkflowViewState.IdRef="If_6">
                                 <If.Then>
                                   <Throw Exception="[New SystemException(&quot;Input Slaughter VAT Rate not found in drop down list: &quot;+io_TransactionItem.Rows(0)(&quot;Slaughter VAT Rate (%)&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_3" />
                                 </If.Then>
@@ -577,18 +601,51 @@
                               <ActivityAction.Argument>
                                 <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                               </ActivityAction.Argument>
-                              <If Condition="[exception.Message.Contains(&quot;Cannot select item. It was not found among existing items.&quot;)]" sap:VirtualizedContainerService.HintSize="484,220" sap2010:WorkflowViewState.IdRef="If_7">
+                              <If Condition="[exception.Message.Contains(&quot;Cannot select item. It was not found among existing items.&quot;)]" sap:VirtualizedContainerService.HintSize="484,219" sap2010:WorkflowViewState.IdRef="If_7">
                                 <If.Then>
-                                  <Throw Exception="[New SystemException(&quot;Input Salvage VAT Rate not found in drop down list: &quot;+io_TransactionItem.Rows(0)(&quot;Salvage VAT Rate (%)&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="200,25" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                                  <Throw Exception="[New SystemException(&quot;Input Salvage VAT Rate not found in drop down list: &quot;+io_TransactionItem.Rows(0)(&quot;Salvage VAT Rate (%)&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_4" />
                                 </If.Then>
                                 <If.Else>
-                                  <Rethrow sap:VirtualizedContainerService.HintSize="200,25" sap2010:WorkflowViewState.IdRef="Rethrow_3" />
+                                  <Rethrow sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Rethrow_3" />
                                 </If.Else>
                               </If>
                             </ActivityAction>
                           </Catch>
                         </TryCatch.Catches>
                       </TryCatch>
+                      <Sequence DisplayName="Extract Gross Slaughter Costs" sap:VirtualizedContainerService.HintSize="484,326" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="strGrossSlaughterCosts" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="aaname" DisplayName="Get Gross Slaughter Costs" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="GetAttribute_4">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="x:String">[strGrossSlaughterCosts]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0e1349e7-57b0-4d6b-9ff6-0aac90bd11aa" InformativeScreenshot="86a2380c15f87a4822a9e0b160ac4ea7" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl name='*grossSlaughterCosts' tag='P' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <Assign DisplayName="Assign Gross Slaughter Costs" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Object">[io_TransactionItem.Rows(0)("Gross Slaughter Costs")]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Object">[strGrossSlaughterCosts]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
                     </Sequence>
                   </ActivityAction>
                 </ui:BrowserScope.Body>
@@ -609,12 +666,24 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Populate Animal IDs workflow" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Process Subflows\Populate Animal IDs.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="ui:Browser" x:Key="in_browsSAM">[browsSAM]</InArgument>
-                      <InArgument x:TypeArguments="sd1:DataTable" x:Key="in_TransactionItem">[io_TransactionItem]</InArgument>
-                      <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_Config">[io_Config]</InOutArgument>
-                      <InOutArgument x:TypeArguments="sd:Stopwatch" x:Key="io_swProcessingTimer">[io_swProcessingTimer]</InOutArgument>
-                      <OutArgument x:TypeArguments="sd1:DataTable" x:Key="out_dtSAMAnimalIDs">[dtSAMAnimalIDs]</OutArgument>
-                      <OutArgument x:TypeArguments="sd1:DataTable" x:Key="out_dtTemplateAnimalIDs">[dtTemplateAnimalIDs]</OutArgument>
+                      <InArgument x:TypeArguments="ui:Browser" x:Key="in_browsSAM">
+                        <mva:VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="browsSAM" />
+                      </InArgument>
+                      <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_Config">
+                        <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="io_Config" />
+                      </InOutArgument>
+                      <InOutArgument x:TypeArguments="sd:Stopwatch" x:Key="io_swProcessingTimer">
+                        <mva:VisualBasicReference x:TypeArguments="sd:Stopwatch" ExpressionText="io_swProcessingTimer" />
+                      </InOutArgument>
+                      <OutArgument x:TypeArguments="sd1:DataTable" x:Key="out_dtSAMAnimalIDs">
+                        <mva:VisualBasicReference x:TypeArguments="sd1:DataTable" ExpressionText="dtSAMAnimalIDs" />
+                      </OutArgument>
+                      <OutArgument x:TypeArguments="sd1:DataTable" x:Key="out_dtTemplateAnimalIDs">
+                        <mva:VisualBasicReference x:TypeArguments="sd1:DataTable" ExpressionText="dtTemplateAnimalIDs" />
+                      </OutArgument>
+                      <InOutArgument x:TypeArguments="sd1:DataTable" x:Key="io_TransactionItem">
+                        <mva:VisualBasicReference x:TypeArguments="sd1:DataTable" ExpressionText="io_TransactionItem" />
+                      </InOutArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -665,7 +734,7 @@
                                   </ui:Target>
                                 </ui:Click.Target>
                               </ui:Click>
-                              <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Input Invoice Number" sap:VirtualizedContainerService.HintSize="438,134" sap2010:WorkflowViewState.IdRef="TypeInto_7" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Haulage Invoice No.&quot;).ToString]">
+                              <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Input Invoice Number" EmptyField="True" sap:VirtualizedContainerService.HintSize="438,134" sap2010:WorkflowViewState.IdRef="TypeInto_7" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Haulage Invoice No.&quot;).ToString]">
                                 <ui:TypeInto.Target>
                                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7deebbae-634e-4ff6-bf5d-75a368a218b9" InformativeScreenshot="3c9ebcf5ab3577b5234ea279d697ef51" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl aaname='Invoice No.' parentid='RULE_KEY' tag='LABEL' /&gt;&lt;nav up='1' /&gt;&lt;webctrl tag='INPUT' aaname='Invoice No.' /&gt;">
                                     <ui:Target.TimeoutMS>
@@ -677,7 +746,7 @@
                                   </ui:Target>
                                 </ui:TypeInto.Target>
                               </ui:TypeInto>
-                              <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Input Haulage Date Received" sap:VirtualizedContainerService.HintSize="438,134" sap2010:WorkflowViewState.IdRef="TypeInto_8" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Haulage Date Received&quot;).ToString]">
+                              <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Input Haulage Date Received" EmptyField="True" sap:VirtualizedContainerService.HintSize="438,134" sap2010:WorkflowViewState.IdRef="TypeInto_8" SimulateType="True" Text="[io_TransactionItem.Rows(0)(&quot;Haulage Date Received&quot;).ToString]">
                                 <ui:TypeInto.Target>
                                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7deebbae-634e-4ff6-bf5d-75a368a218b9" InformativeScreenshot="dc2b9ea26264090c5b31d3744b483c1f" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl aaname='Date Received' parentid='RULE_KEY' tag='LABEL' /&gt;&lt;nav up='1' /&gt;&lt;webctrl tag='INPUT' aaname='Date Received' /&gt;">
                                     <ui:Target.TimeoutMS>
@@ -755,13 +824,26 @@
                               <av:PointCollection x:Key="ConnectorLocation">300,782.5 300,832.5</av:PointCollection>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Populate_CPH_Haulage workflow" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\Process Subflows\Populate_CPH_Haulage.xaml">
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Populate_CPH_Haulage workflow" sap:VirtualizedContainerService.HintSize="379,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\Process Subflows\Populate_CPH_Haulage.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="ui:Browser" x:Key="in_browsSAM">[browsSAM]</InArgument>
-                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_Config">[io_Config]</InArgument>
-                              <InArgument x:TypeArguments="sd:Stopwatch" x:Key="io_swProcessingTimer">[io_swProcessingTimer]</InArgument>
-                              <OutArgument x:TypeArguments="sd1:DataTable" x:Key="out_dtSAMCPH">[dtSAMCPH]</OutArgument>
-                              <OutArgument x:TypeArguments="sd1:DataTable" x:Key="out_dtTemplateCPH">[dtTemplateCPH]</OutArgument>
+                              <InArgument x:TypeArguments="ui:Browser" x:Key="in_browsSAM">
+                                <mva:VisualBasicValue x:TypeArguments="ui:Browser" ExpressionText="browsSAM" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="io_Config">
+                                <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="io_Config" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="sd:Stopwatch" x:Key="io_swProcessingTimer">
+                                <mva:VisualBasicValue x:TypeArguments="sd:Stopwatch" ExpressionText="io_swProcessingTimer" />
+                              </InArgument>
+                              <OutArgument x:TypeArguments="sd1:DataTable" x:Key="out_dtSAMCPH">
+                                <mva:VisualBasicReference x:TypeArguments="sd1:DataTable" ExpressionText="dtSAMCPH" />
+                              </OutArgument>
+                              <OutArgument x:TypeArguments="sd1:DataTable" x:Key="out_dtTemplateCPH">
+                                <mva:VisualBasicReference x:TypeArguments="sd1:DataTable" ExpressionText="dtTemplateCPH" />
+                              </OutArgument>
+                              <InOutArgument x:TypeArguments="sd1:DataTable" x:Key="io_TransactionItem">
+                                <mva:VisualBasicReference x:TypeArguments="sd1:DataTable" ExpressionText="io_TransactionItem" />
+                              </InOutArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -777,7 +859,7 @@
                                   <av:Size x:Key="ShapeSize">200,68</av:Size>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Sequence DisplayName="Standardise Reporting Data" sap:VirtualizedContainerService.HintSize="610,3255" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                              <Sequence DisplayName="Standardise Reporting Data" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_19">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -915,7 +997,7 @@
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <ui:BuildDataTable DataTable="[out_dtReportingStatus]" DisplayName="Build Reporting Status Table" sap:VirtualizedContainerService.HintSize="410,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Data_x0020_Tab&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Status_x0020_Cell&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;ID&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Status&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+                                  <ui:BuildDataTable DataTable="[out_dtReportingStatus]" DisplayName="Build Reporting Status Table" sap:VirtualizedContainerService.HintSize="410,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Data_x0020_Tab&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Status_x0020_Cell&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;ID&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Status&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
                                   <Sequence DisplayName="Add Animal ID Data" sap:VirtualizedContainerService.HintSize="410,603" sap2010:WorkflowViewState.IdRef="Sequence_27">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">

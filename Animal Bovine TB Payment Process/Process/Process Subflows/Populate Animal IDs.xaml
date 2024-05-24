@@ -1,11 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Populate_Animal_IDs" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="clr-namespace:Pop_Ups;assembly=Pop Ups" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sd1="clr-namespace:System.Diagnostics;assembly=System" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Populate_Animal_IDs" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="clr-namespace:Pop_Ups;assembly=Pop Ups" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Diagnostics;assembly=System" xmlns:sd1="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_browsSAM" Type="InArgument(ui:Browser)" />
-    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(sd:DataTable)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="io_Config" Type="InOutArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="io_swProcessingTimer" Type="InOutArgument(sd1:Stopwatch)" />
-    <x:Property Name="out_dtSAMAnimalIDs" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="out_dtTemplateAnimalIDs" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="io_swProcessingTimer" Type="InOutArgument(sd:Stopwatch)" />
+    <x:Property Name="out_dtSAMAnimalIDs" Type="OutArgument(sd1:DataTable)" />
+    <x:Property Name="out_dtTemplateAnimalIDs" Type="OutArgument(sd1:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="io_TransactionItem" Type="InOutArgument(sd1:DataTable)" />
   </x:Members>
   <this:Populate_Animal_IDs.in_browsSAM>
     <InArgument x:TypeArguments="ui:Browser" />
@@ -13,10 +13,10 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1045,4952</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1209,5592</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Populate_Animal_IDs_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="64">
+    <scg:List x:TypeArguments="x:String" Capacity="34">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -54,7 +54,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="46">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="35">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -90,10 +90,12 @@
       <AssemblyReference>Pop Ups</AssemblyReference>
       <AssemblyReference>System.Data.Entity</AssemblyReference>
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Populate_Animal_IDs" sap:VirtualizedContainerService.HintSize="602,4887" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Populate_Animal_IDs" sap:VirtualizedContainerService.HintSize="602,5635" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="intSAMRowIndex" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -160,9 +162,9 @@
               <ui:AddDataColumn x:TypeArguments="x:Int32" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Row Number" DataTable="[out_dtTemplateAnimalIDs]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="334,188" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" />
               <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[out_dtTemplateAnimalIDs]" DisplayName="For Each Row in Data" sap:VirtualizedContainerService.HintSize="334,240" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
                 <ui:ForEachRow.Body>
-                  <ActivityAction x:TypeArguments="sd:DataRow">
+                  <ActivityAction x:TypeArguments="sd1:DataRow">
                     <ActivityAction.Argument>
-                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
+                      <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="Row" />
                     </ActivityAction.Argument>
                     <Assign sap2010:Annotation.AnnotationText="Add 2 to the row index to account for the spreadsheet's header row and DataTables having a 0 based index" DisplayName="Assign Row Rumber" sap:VirtualizedContainerService.HintSize="262,120" sap2010:WorkflowViewState.IdRef="Assign_5">
                       <Assign.To>
@@ -207,11 +209,11 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[out_dtSAMAnimalIDs]" DisplayName="For Each SAM Animal ID" sap:VirtualizedContainerService.HintSize="560,2343" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[intSAMRowIndex]" DataTable="[out_dtSAMAnimalIDs]" DisplayName="For Each SAM Animal ID" sap:VirtualizedContainerService.HintSize="560,2343" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
-        <ActivityAction x:TypeArguments="sd:DataRow">
+        <ActivityAction x:TypeArguments="sd1:DataRow">
           <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+            <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
           <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,2222" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
@@ -243,7 +245,7 @@
                 <OutArgument x:TypeArguments="x:String">[strSelectorRowIndex]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[(intRowIndex+2).ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String">[(intSAMRowIndex+2).ToString]</InArgument>
               </Assign.Value>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -263,7 +265,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Order ID" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SimulateType="True" Text="[out_dtTemplateAnimalIDs(intRowIndex)(&quot;Order ID&quot;).ToString]">
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Type Order ID" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SimulateType="True" Text="[out_dtTemplateAnimalIDs(intRowIndex)(&quot;Order ID&quot;).ToString]">
                       <ui:TypeInto.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9948268a-1664-45f1-9e99-b770b0afedc9" InformativeScreenshot="24ff391197ed8b6abcfcbf21d2f83611" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' colName='Order ID' tableCol='4' tableRow='{{strSelectorRowIndex}}' type='text' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -275,7 +277,7 @@
                         </ui:Target>
                       </ui:TypeInto.Target>
                     </ui:TypeInto>
-                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Salvage Price (p/kg)" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SimulateType="True" Text="[out_dtTemplateAnimalIDs(intRowIndex)(&quot;Salvage Price (p/kg)&quot;).ToString]">
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Type Salvage Price (p/kg)" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SimulateType="True" Text="[out_dtTemplateAnimalIDs(intRowIndex)(&quot;Salvage Price (p/kg)&quot;).ToString]">
                       <ui:TypeInto.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9948268a-1664-45f1-9e99-b770b0afedc9" InformativeScreenshot="b9f47d1ef8d59ec7b7bac00a5c76ecea" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' colName='Salvage Price (p/kg)' tableCol='5' tableRow='{{strSelectorRowIndex}}' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -287,7 +289,7 @@
                         </ui:Target>
                       </ui:TypeInto.Target>
                     </ui:TypeInto>
-                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Salvage Weight (kg)" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" SimulateType="True" Text="[out_dtTemplateAnimalIDs(intRowIndex)(&quot;Salvage Weight (kg)&quot;).ToString]">
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Type Salvage Weight (kg)" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" SimulateType="True" Text="[out_dtTemplateAnimalIDs(intRowIndex)(&quot;Salvage Weight (kg)&quot;).ToString]">
                       <ui:TypeInto.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9948268a-1664-45f1-9e99-b770b0afedc9" InformativeScreenshot="0e6644977d47195812399f7aff4f2c1b" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' colName='Salvage Weight (kg)' tableCol='6' tableRow='{{strSelectorRowIndex}}' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -299,7 +301,7 @@
                         </ui:Target>
                       </ui:TypeInto.Target>
                     </ui:TypeInto>
-                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Condemned Weight (kg)" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_4" SimulateType="True" Text="[out_dtTemplateAnimalIDs(intRowIndex)(&quot;Condemned Weight (kg)&quot;).ToString]">
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Type Condemned Weight (kg)" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_4" SimulateType="True" Text="[out_dtTemplateAnimalIDs(intRowIndex)(&quot;Condemned Weight (kg)&quot;).ToString]">
                       <ui:TypeInto.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9948268a-1664-45f1-9e99-b770b0afedc9" InformativeScreenshot="4506bf19bcccc3cd3128a184d8291bd5" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' colName='Condemned Weight (kg)' tableCol='10' tableRow='{{strSelectorRowIndex}}' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -311,7 +313,7 @@
                         </ui:Target>
                       </ui:TypeInto.Target>
                     </ui:TypeInto>
-                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Type Condemned Disposal Price (p/kg)" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_5" SimulateType="True" Text="[out_dtTemplateAnimalIDs(intRowIndex)(&quot;Condemned Disposal Price (p/kg)&quot;).ToString]">
+                    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DelayBetweenKeys="0" DisplayName="Type Condemned Disposal Price (p/kg)" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_5" SimulateType="True" Text="[out_dtTemplateAnimalIDs(intRowIndex)(&quot;Condemned Disposal Price (p/kg)&quot;).ToString]">
                       <ui:TypeInto.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9948268a-1664-45f1-9e99-b770b0afedc9" InformativeScreenshot="75d3075eb465678f37b08ac9ef479290" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl tag='INPUT' colName='Condemned Disposal Price (p/kg)' tableCol='11' tableRow='{{strSelectorRowIndex}}' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -360,6 +362,72 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[in_browsSAM]" BrowserType="Edge" DisplayName="Extract Animal Totals" sap:VirtualizedContainerService.HintSize="560,708" sap2010:WorkflowViewState.IdRef="BrowserScope_3">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Extract Animal Totals" sap:VirtualizedContainerService.HintSize="376,600" sap2010:WorkflowViewState.IdRef="Sequence_12">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="strNetSalvage" />
+              <Variable x:TypeArguments="x:String" Name="strNetDisposalCosts" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="aaname" DisplayName="Get Net Salvage" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="GetAttribute_3">
+              <ui:GetAttribute.Result>
+                <OutArgument x:TypeArguments="x:String">[strNetSalvage]</OutArgument>
+              </ui:GetAttribute.Result>
+              <ui:GetAttribute.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0e1349e7-57b0-4d6b-9ff6-0aac90bd11aa" InformativeScreenshot="0b339413ab7c49bed38a82058484554d" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl name='*totalNetSalvageAmount' tag='P' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:GetAttribute.Target>
+            </ui:GetAttribute>
+            <Assign DisplayName="Assign Net Salvage" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Object">[io_TransactionItem.Rows(0)("Net Salvage")]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Object">[strNetSalvage]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="aaname" DisplayName="Get Net Disposal Costs" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="GetAttribute_4">
+              <ui:GetAttribute.Result>
+                <OutArgument x:TypeArguments="x:String">[strNetDisposalCosts]</OutArgument>
+              </ui:GetAttribute.Result>
+              <ui:GetAttribute.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0e1349e7-57b0-4d6b-9ff6-0aac90bd11aa" InformativeScreenshot="0b339413ab7c49bed38a82058484554d" Selector="&lt;webctrl id='PegaGadget1Ifr' tag='IFRAME' /&gt;&lt;webctrl name='*totalDisposalNetCosts' tag='P' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:GetAttribute.Target>
+            </ui:GetAttribute>
+            <Assign DisplayName="Assign Net Disposal Costs" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Object">[io_TransactionItem.Rows(0)("Net Disposal Costs")]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Object">[strNetDisposalCosts]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+    </ui:BrowserScope>
     <If Condition="[CBool(io_Config(&quot;boolPausePoint1&quot;))]" DisplayName="Pause Point 1" sap:VirtualizedContainerService.HintSize="560,654" sap2010:WorkflowViewState.IdRef="If_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -376,13 +444,13 @@
           </sap:WorkflowViewStateService.ViewState>
           <InvokeMethod DisplayName="Stop Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Stop">
             <InvokeMethod.TargetObject>
-              <InArgument x:TypeArguments="sd1:Stopwatch">[io_swProcessingTimer]</InArgument>
+              <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
             </InvokeMethod.TargetObject>
           </InvokeMethod>
           <p:Generic_PopUp OUT_ProcessType="{x:Null}" OUT_strButtonSelected="{x:Null}" DisplayName="Pause Point 1" sap:VirtualizedContainerService.HintSize="238.5,22" IN_CSS_filepath="[&quot;/file://&quot; + Directory.GetCurrentDirectory + &quot;\Assets\Generic\PausePoint.css&quot;]" IN_ErrorMessage="The stop button was pressed" IN_PopupMessage="&lt;h1&gt;Please Check Data&lt;/h1&gt;&lt;br&gt;&lt;br&gt;Please check SAM to ensure the Salvage &amp; Disposal data has been entered correctly. Once you are happy, please press continue." IN_PopupTitle="Pause Point 1" IN_WidthHeight="[{600,350}]" sap2010:WorkflowViewState.IdRef="Generic_PopUp_1" />
           <InvokeMethod DisplayName="Start Stopwatch" sap:VirtualizedContainerService.HintSize="238.5,135" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="Start">
             <InvokeMethod.TargetObject>
-              <InArgument x:TypeArguments="sd1:Stopwatch">[io_swProcessingTimer]</InArgument>
+              <InArgument x:TypeArguments="sd:Stopwatch">[io_swProcessingTimer]</InArgument>
             </InvokeMethod.TargetObject>
           </InvokeMethod>
         </Sequence>
