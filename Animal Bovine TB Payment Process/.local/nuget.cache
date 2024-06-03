@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "49Y2gHE9Ih3D8n7984gNOObnQhHUN2s2EIT3n4BZIbIffcLYI4VyaGqyetriTTQ1EWwc1hJXtH+K2G4y0Iq/Vg==",
+  "dgSpecHash": "mw7pI5sCOESDpqPS5fvnK9RIokUsHWSeHbuFvlTGWSlu3Oh7i7qSCKLMFhOFyg9FtpbhgRT6NtQ5lvjw1XUnnA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ws000012\\OneDrive - Defra\\UiPath\\Github\\APHA-Animal-Bovine-TB-Payment-Process\\Animal Bovine TB Payment Process\\.local\\",
   "expectedPackageFiles": [
@@ -15,7 +15,7 @@
     "C:\\Users\\ws000012\\.nuget\\packages\\extended.wpf.toolkit\\2.8.0\\extended.wpf.toolkit.2.8.0.nupkg.sha512",
     "C:\\Users\\ws000012\\.nuget\\packages\\humanizer.core\\2.4.2\\humanizer.core.2.4.2.nupkg.sha512",
     "C:\\Users\\ws000012\\.nuget\\packages\\interop.domino.dll\\1.0.0\\interop.domino.dll.1.0.0.nupkg.sha512",
-    "C:\\Users\\ws000012\\.nuget\\packages\\logging\\1.0.10\\logging.1.0.10.nupkg.sha512",
+    "C:\\Users\\ws000012\\.nuget\\packages\\logging\\1.0.16\\logging.1.0.16.nupkg.sha512",
     "C:\\Users\\ws000012\\.nuget\\packages\\microsoft.aspnet.signalr.client\\2.4.0\\microsoft.aspnet.signalr.client.2.4.0.nupkg.sha512",
     "C:\\Users\\ws000012\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\3.1.6\\microsoft.aspnetcore.connections.abstractions.3.1.6.nupkg.sha512",
     "C:\\Users\\ws000012\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\3.1.6\\microsoft.aspnetcore.http.connections.client.3.1.6.nupkg.sha512",
